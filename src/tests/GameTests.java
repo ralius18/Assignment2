@@ -4,24 +4,27 @@ import java.awt.Point;
 
 import org.junit.Test;
 
+import characters.Scarlett;
+import control.Player;
 import game.Board;
 import game.Character;
 import game.Weapon;
 import locations.Location;
 import locations.Room;
+import rooms.*;
 
 public class GameTests {
 	
 	@Test
 	public void test1(){
 		//just create a board.
-		setupNewBoard();
+		setupNewBoard_1();
 	}
 	
 	@Test
 	public void test2(){
 		//see how many methods work.
-		Board b = setupNewBoard();
+		Board b = setupNewBoard_1();
 		Location loc =  b.getSquareFromPoint(new Point(1,1));
 		assert loc instanceof Room : "This exact location should be a room";
 		Room room = (Room)loc;
@@ -30,14 +33,14 @@ public class GameTests {
 	
 	@Test
 	public void test3(){
-		Board b = setupNewBoard();
+		Board b = setupNewBoard_1();
 		Point p = b.getPosition(b.getCharacters()[1]);
 		assert p.equals(new Point(14,0)); //Mustard's start point
 	}
 	
 	@Test
 	public void test4(){
-		Board b = setupNewBoard();
+		Board b = setupNewBoard_1();
 		Location l1 = b.getLocationAtPoint(new Point(1,1));
 		Location l2 = b.getLocationAtPoint(new Point(-1,1));
 		Location l3 = b.getLocationAtPoint(new Point(1,-1));
@@ -50,7 +53,7 @@ public class GameTests {
 		assert l4 == null;
 	}
 
-	public Board setupNewBoard(){
+	public Board setupNewBoard_1(){
 		//Initialising characters
 //		Character[] characters = new Character[6];
 //		characters[0] = new Character("Scarlett");
@@ -86,4 +89,28 @@ public class GameTests {
 		return null;
 	}
 	
+	public void Test01(){
+		//creates a board with one character (Scarlett)
+		Scarlett sc = new Scarlett();
+		Character[] chars = new Character[1];
+		chars[0] = sc;
+		Board b = new Board(chars, createRooms());
+		Player p = new Player(sc);
+		
+		//TODO: more testing. May trash the older tests...
+	}
+	
+	public Room[] createRooms(){
+		Room[] rooms = new Room[9];
+		rooms[0] = new Kitchen();
+		rooms[1] = new Ballroom();
+		rooms[2] = new Conservatory();
+		rooms[3] = new BilliardRoom();
+		rooms[4] = new Library();
+		rooms[5] = new Study();
+		rooms[6] = new Hall();
+		rooms[7] = new Lounge();
+		rooms[8] = new DiningRoom();
+		return rooms;
+	}
 }
