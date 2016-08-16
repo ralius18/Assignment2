@@ -17,21 +17,32 @@ import control.Dice;
 public class DiceTests {
 
 	@Test
-	public void Test1(){
+	public void test1(){
 		Dice dice = new Dice(6);
 		rollDice(dice, 50, 6);
 	}
 	
 	@Test
-	public void Test2(){
+	public void test2(){
 		Dice dice = new Dice(3);
 		rollDice(dice, 50, 3);
 	}
 	
 	@Test
-	public void Test3(){
+	public void test3(){
 		Dice dice = new Dice(12);
 		rollDice(dice, 50, 12);
+	}
+	
+	@Test
+	public void test4(){
+		Dice dice;
+		try{
+			dice = new Dice(2);
+			fail("Error should have been thrown.");
+		}
+		catch(AssertionError e){
+		}
 	}
 	
 	/**
