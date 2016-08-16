@@ -15,17 +15,15 @@ import game.Character;
 import game.Weapon;
 import locations.Location;
 import locations.Room;
+import locations.Stairwell;
 import locations.StarterSquare;
 import rooms.*;
 import weapons.Candlestick;
 
 public class GameTests {
 	
-	/**
-	 * Just leave this for now, will be using it later...
-	 */
 	@Test
-	public void boardTestPrototype(){
+	public void boardTest01(){
 		//creates a board with one character (Scarlett)
 		Scarlett scarlett = new Scarlett();
 		Character[] chars = new Character[1];
@@ -37,9 +35,24 @@ public class GameTests {
 		Dice dice = board.getDice();
 		Weapon weapon = new Candlestick();
 		
-		// TODO: more testing.
+		//Scarlett should be on a StarterSquare
+		Point p = board.getPosition(scarlett);
+		Location loc = board.getLocationAtPoint(p);
+		assertTrue(loc instanceof StarterSquare);
+		
+		//should return null as X is not a valid char for the board parser.
+		loc = board.parseLocation('X');
+		assertTrue(loc == null);
+		
+		//should give a Stairwell
+		loc = board.getSquareFromPoint(new Point(5,1));
+		assertTrue(loc instanceof Stairwell);
 	}
 	
+	/**
+	 * Helper method.
+	 * @return an array of rooms that the game uses.
+	 */
 	public Room[] createRooms(){
 		Room[] rooms = new Room[9];
 		rooms[0] = new Kitchen();
