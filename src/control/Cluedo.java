@@ -58,7 +58,7 @@ public class Cluedo {
 		rooms = g.getRooms();
 		weapons = g.getWeapons();
 
-		players = new Player[numPlayers];
+		players = g.getPlayers();
 		dice = g.getDice();
 		board = g.getBoard();
 		
@@ -115,7 +115,7 @@ public class Cluedo {
 		east.setPreferredSize(new Dimension(200,300));
 		
 		for (Character c : characters){
-			JRadioButton button = new JRadioButton(c.cardName());
+			JRadioButton button = new JRadioButton(c.getName());
 			button.addActionListener(characterAction);
 			characterGroup.add(button);
 			west.add(button);
@@ -158,43 +158,11 @@ public class Cluedo {
 	 * @return Array of players of the game
 	 */
 	public Player[] initialisePlayers(){
-		for (int i = 0; i < players.length; i++){
-			System.out.println("Player "+(i+1)+
-						": Enter number of character");
-			int characterNum = 0;
-			Character[] availableCharacters = new Character[characters.length];
-			for (Character c : characters){
-				if (! c.isSelected()){
-					System.out.print(characterNum+": "+c.cardName()+"\n");
-					availableCharacters[characterNum] = c;
-					characterNum++;
-				}
-			}
-			System.out.println();
-			try{
-				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-				String in = reader.readLine();
-				int selection = 0;
-				boolean valid = false;
-				while (!valid){
-					try{
-						selection = Integer.parseInt(in);
-						if (selection >= 0 && selection < characterNum)
-							valid = true;
-						else
-							valid = false;
-					} catch(Exception e){
-						valid = false;
-					}
-					if (!valid){
-						System.out.println("Number must be in list");
-						in = reader.readLine();
-					}
-				}
-				players[i] = new Player(availableCharacters[selection]);
-				availableCharacters[selection].select();
-			} catch (IOException e){
-				e.printStackTrace();
+		int i = 0;
+		for (Character c : characters){
+			if (c.isSelected()){
+				players[i] = new Player(c);
+				i++;
 			}
 		}
 		return players;
@@ -244,13 +212,12 @@ public class Cluedo {
 		while(running){
 			for (int i = 0; i < players.length; i++){
 				Player p = players[i];
-				graphics.getHand().addHand(p.getHand());
+				graphics.getHandView().addHand(p.getHand());
 				graphics.repaint();
 				JOptionPane.showMessageDialog(null, p.getCharacter().getName()
 						+ ", your turn.");
 				
 				try{
-					BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 					//Begin processing a single player
 					p.move(board, dice); //attempt to move the player
 					graphics.repaint();
@@ -260,17 +227,17 @@ public class Cluedo {
 						String message = "";
 						//If player is in the Middle, ask to solve the murder
 						if (currentLocation instanceof Middle){
-							message = "Would you like to attempt to solve the murder? If you are wrong, you cannot continure (y/n)";
+							message = "Would you like to attempt to solve the murder? If you are wrong, you cannot continue";
 						}
 						//If player is in a Room, ask to make a guess
 						else {
-							message = "Would you like to make a guess in the "+((Room)currentLocation).cardName()+"? (y/n)";
+							message = "Would you like to make a guess in the "+((Room)currentLocation).cardName()+"?";
 						}
 						int input = 0;
 						input = JOptionPane.showConfirmDialog(null, message, "Cluedo", JOptionPane.YES_NO_OPTION);
 						
 						boolean valid = false; //used for checking if input is valid
-						boolean makingGuess = false; //used for checking if player is making a guess
+						boolean makingGuess = input == JOptionPane.YES_OPTION; //used for checking if player is making a guess
 						boolean listRooms = currentLocation instanceof Middle;
 						
 						if (makingGuess){
@@ -303,7 +270,7 @@ public class Cluedo {
 								}
 								else {
 									for (Character c : characters){
-										if (c.cardName().equals(selectedCharacter)){
+										if (c.getName().equals(selectedCharacter)){
 											chosenCharacter = c;
 										}
 									}

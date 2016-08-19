@@ -36,7 +36,7 @@ public class Board {
 	
 	private int leftPush, topPush = 0;
 	private Location clickLoc = null;
-	private int[] clickCoords;
+	private int[] clickCoords = new int[2];
 	
 	/**
 	 * Creates an instance of the board
@@ -270,7 +270,7 @@ public class Board {
 		for (int yplace = 0; yplace < locations[0].length; yplace++){
 			for (int xplace = 0; xplace < locations.length; xplace++){
 				if (x > xplace*20+leftPush && x < xplace*20+20+leftPush
-					&& y > yplace*20+20+topPush && y < yplace*20+20+topPush){
+					&& y > yplace*20+topPush && y < yplace*20+20+topPush){
 					clickLoc = locations[xplace][yplace];
 					clickCoords[0] = xplace;
 					clickCoords[1] = yplace;

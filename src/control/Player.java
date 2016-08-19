@@ -88,8 +88,11 @@ public class Player {
 		if (depth > maxDepth){
 			return false;
 		}
-		else if (current == to){
+		if (current == to){
 			return true;
+		}
+		else if (depth > maxDepth){
+			return false;
 		}
 		
 		for (Location location: current.getValidMoves()){
