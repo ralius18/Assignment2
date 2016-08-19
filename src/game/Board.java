@@ -313,5 +313,15 @@ public class Board {
 			c.draw(g, (int) playerPositions.get(c).getX()*20+leftPush, 
 					(int) playerPositions.get(c).getY()*20+topPush);
 		}
+		
+		g.drawString("Kitchen", 50, 80);
+		g.drawString("Ballroom",225, 100);
+		g.drawString("Conservatory", 390, 70);
+		g.drawString("Dining Room", 50, 260);
+		g.drawString("Billard Room", 400, 210);
+		g.drawString("Library", 400, 330);
+		g.drawString("Lounge", 50, 440);
+		g.drawString("Hall", 240, 440);
+		g.drawString("Study", 400, 460);
 	}
 }
