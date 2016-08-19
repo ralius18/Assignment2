@@ -23,8 +23,8 @@ public class Rope extends Weapon {
 		try {
 			if (image == null){
 				image = ImageIO.read(getClass().getResource(imageString));
-				g.drawImage(image, x, y, null);
 			}
+			g.drawImage(image, x, y, null);
 		} catch(IOException e){
 			System.err.println("IOException when drawing weapon card");
 		}
