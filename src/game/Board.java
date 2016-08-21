@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.io.BufferedReader;
@@ -313,6 +315,9 @@ public class Board {
 			c.draw(g, (int) playerPositions.get(c).getX()*20+leftPush, 
 					(int) playerPositions.get(c).getY()*20+topPush);
 		}
+		
+		g.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		g.setColor(Color.WHITE);
 		
 		g.drawString("Kitchen", 50, 80);
 		g.drawString("Ballroom",225, 100);
