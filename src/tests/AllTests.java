@@ -24,7 +24,11 @@ import org.junit.runners.Suite;
 	   tests.CharacterTests.class,
 	   tests.DiceTests.class,
 	   tests.PlayerTests.class,
-	   tests.GameTests.class
+	   tests.BoardTests.class,
+	   tests.SolutionTests.class,
+	   tests.LocationTests.class,
+	   tests.RoomTests.class,
+	   tests.WeaponTests.class
 	})
 
 	public class AllTests {   

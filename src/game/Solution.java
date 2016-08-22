@@ -25,7 +25,7 @@ public class Solution {
 		if (isSolved){
 			System.out.println("Character: "+character.cardName()+"\nWeapon: "+
 								weapon.cardName()+"\nRoom: "+room.cardName());
-		}
+	}
 		else {
 			System.out.println("Solution not yet solved");
 		}
