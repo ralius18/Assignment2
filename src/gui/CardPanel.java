@@ -12,7 +12,7 @@ public class CardPanel extends JPanel {
 	List<Card> cards;
 	
 	public void addCards(List<Card> cards){
-		cards = cards;
+		this.cards = cards;
 	}
 	
 	@Override

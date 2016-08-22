@@ -39,7 +39,7 @@ public class Scarlett extends Character {
 					g.setColor(Color.WHITE);
 					g.fillRect(x-width+1, y+3, width-2, height-2);
 					g.setColor(Color.BLACK);
-					g.drawString(getName(), x+width+4, y+height/2+4);
+					g.drawString(getName(), x+1-width+3, y+height/2+4);
 				}
 				else{
 					g.setColor(Color.BLACK);

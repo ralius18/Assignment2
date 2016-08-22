@@ -24,7 +24,7 @@ public abstract class Character implements Card{
 	}
 	
 	public String cardName(){
-		return name;
+		return getName();
 	}
 	
 	public abstract String getName();

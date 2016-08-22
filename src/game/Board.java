@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.io.BufferedReader;
@@ -36,7 +38,7 @@ public class Board {
 	
 	private int leftPush, topPush = 0;
 	private Location clickLoc = null;
-	private int[] clickCoords;
+	private int[] clickCoords = new int[2];
 	
 	/**
 	 * Creates an instance of the board
@@ -270,7 +272,7 @@ public class Board {
 		for (int yplace = 0; yplace < locations[0].length; yplace++){
 			for (int xplace = 0; xplace < locations.length; xplace++){
 				if (x > xplace*20+leftPush && x < xplace*20+20+leftPush
-					&& y > yplace*20+20+topPush && y < yplace*20+20+topPush){
+					&& y > yplace*20+topPush && y < yplace*20+20+topPush){
 					clickLoc = locations[xplace][yplace];
 					clickCoords[0] = xplace;
 					clickCoords[1] = yplace;
@@ -313,5 +315,18 @@ public class Board {
 			c.draw(g, (int) playerPositions.get(c).getX()*20+leftPush, 
 					(int) playerPositions.get(c).getY()*20+topPush);
 		}
+		
+		g.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		g.setColor(Color.WHITE);
+		
+		g.drawString("Kitchen", 50, 80);
+		g.drawString("Ballroom",225, 100);
+		g.drawString("Conservatory", 390, 70);
+		g.drawString("Dining Room", 50, 260);
+		g.drawString("Billard Room", 400, 210);
+		g.drawString("Library", 400, 330);
+		g.drawString("Lounge", 50, 440);
+		g.drawString("Hall", 240, 440);
+		g.drawString("Study", 400, 460);
 	}
 }
