@@ -43,6 +43,10 @@ public class Dice {
 			
 	}
 	
+	/**
+	 * Draws dice image corresponding to current roll
+	 * @param g
+	 */
 	public void draw(Graphics g){
 		try{
 			BufferedImage image = ImageIO.read(getClass().getResource(

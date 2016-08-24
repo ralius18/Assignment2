@@ -36,9 +36,9 @@ public class Board {
 	private Stairwell stairsToConservatory;
 	private Middle middle = new Middle();
 	
-	private int leftPush, topPush = 0;
+	private int leftPush, topPush = 0;	//used for locations of items on board
 	private Location clickLoc = null;
-	private int[] clickCoords = new int[2];
+	private int[] clickCoords = new int[2];	//x and y of clicked location (in terms of squares, not pixels)
 	
 	/**
 	 * Creates an instance of the board
@@ -255,6 +255,12 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Detects the hovering of the mouse over a character icon and
+	 * sets the isHovering parameter in the corresponding character to be true.
+	 * @param x
+	 * @param y
+	 */
 	public void mouseHover(int x, int y) {
 		for (Character c : playerPositions.keySet()){
 			Point p = playerPositions.get(c);
@@ -268,6 +274,12 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Called from the canvas mouseClicked, records the current x and y position 
+	 * and location of the square it is currently in.
+	 * @param x
+	 * @param y
+	 */
 	public void boardMouseClicked(int x, int y) {
 		for (int yplace = 0; yplace < locations[0].length; yplace++){
 			for (int xplace = 0; xplace < locations.length; xplace++){
@@ -281,6 +293,10 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Returns clicked location in utility array.
+	 * @return
+	 */
 	public Object[] getClickedLocation(){
 		Object[] result = null;
 		Location clicked = clickLoc;
@@ -311,7 +327,6 @@ public class Board {
 		}
 		
 		for (Character c : playerPositions.keySet()){
-			Point p = playerPositions.get(c);
 			c.draw(g, (int) playerPositions.get(c).getX()*20+leftPush, 
 					(int) playerPositions.get(c).getY()*20+topPush);
 		}

@@ -9,6 +9,13 @@ import javax.swing.JScrollPane;
 
 import game.Card;
 
+/**
+ * Contains the CardPanel of the main window, can scroll through the list using this.
+ * @author Brad Stone
+ * @author Jarvis Dunn
+ *
+ */
+@SuppressWarnings("serial")
 public class CardScroller extends JScrollPane {
 	
 	private List<Card> processing = null;

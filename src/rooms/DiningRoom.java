@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import game.Board;
 import locations.Room;
 
 public class DiningRoom extends Room {

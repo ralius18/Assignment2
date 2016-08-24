@@ -10,14 +10,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
 import characters.*;
 
+/**
+ * Main class of GUI version of Cluedo. Contains a lot of swing elements. 
+ * Main loop gets delegated to Cluedo class, but window stays open at end of game.
+ * @author Brad Stone
+ * @author Jarvis Dunn
+ *
+ */
+@SuppressWarnings("serial")
 public class GUI extends JFrame {
 	
 	private JPanel top, right, bottom, left, center;
@@ -187,6 +192,9 @@ public class GUI extends JFrame {
 		run();
 	}
 	
+	/**
+	 * Runs the game, keeps the window open until close by a player.
+	 */
 	public void run(){
 		while (true){
 			if (newGame){
@@ -205,6 +213,10 @@ public class GUI extends JFrame {
 		}
 	}
 	
+	/**
+	 * Opens character selection window. Grays out already selected characters.
+	 * @param i
+	 */
 	public void selectPlayers(int i){
 		amountOfPlayers = 0;
 		popUpMenu = new JPopupMenu("Select Players");
@@ -291,6 +303,12 @@ public class GUI extends JFrame {
 		popUpMenu.setVisible(true);
 	}
 
+	/**
+	 * Utility method for character selection. Creates new player, increments player count,
+	 * selects the character and grays out selected character.
+	 * @param string
+	 * @param ok
+	 */
 	public void radioButtonEvent(String string, boolean ok) {
 		if (!ok){
 			if (players.length != amountOfPlayers){
@@ -380,6 +398,10 @@ public class GUI extends JFrame {
 		canvas = new Canvas(500, 500, board, this);
 	}
 
+	/**
+	 * Entry point for GUI based version of Cluedo.
+	 * @param args
+	 */
 	public static void main(String[] args){
 		new GUI();
 	}

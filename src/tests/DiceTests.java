@@ -36,7 +36,8 @@ public class DiceTests {
 	
 	@Test
 	public void test4(){
-		Dice dice;
+		@SuppressWarnings("unused")
+		Dice dice = null;
 		try{
 			dice = new Dice(2);
 			fail("Error should have been thrown.");

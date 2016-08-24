@@ -10,7 +10,6 @@ import characters.*;
 import control.Dice;
 import control.Player;
 import game.Board;
-import game.Card;
 import game.Character;
 import game.Weapon;
 import locations.Location;
@@ -67,6 +66,7 @@ public class BoardTests{
 		boolean caughtSomeError = false;
 		//giving this method a 'n' will return, but so will any other key.
 		try{
+			@SuppressWarnings("unused")
 			Location loc = board.parseLocation('X');
 		}
 		catch(Error e){
@@ -90,6 +90,7 @@ public class BoardTests{
 		try{
 			Point p = new Point(-1, -1);
 			//should break.
+			@SuppressWarnings("unused")
 			Location loc = board.getSquareFromPoint(p);
 		}
 		catch(Error e){

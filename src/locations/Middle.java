@@ -79,20 +79,16 @@ public class Middle extends Location {
 		if (coY > 0) {
 			north = board.getLocationAtPoint(new Point(coX, coY - 1));
 		}
-		if (north == null
-				|| (north instanceof Square && !((Square) north).isEntrance())) {
+		if (north == null || (north instanceof Square && !((Square) north).isEntrance())) {
 			type += "N";
 		}
-		if (south == null
-				|| (south instanceof Square && !((Square) south).isEntrance())) {
+		if (south == null || (south instanceof Square && !((Square) south).isEntrance())) {
 			type += "S";
 		}
-		if (east == null
-				|| (east instanceof Square && !((Square) east).isEntrance())) {
+		if (east == null || (east instanceof Square && !((Square) east).isEntrance())) {
 			type += "E";
 		}
-		if (west == null
-				|| (west instanceof Square && !((Square) west).isEntrance())) {
+		if (west == null || (west instanceof Square && !((Square) west).isEntrance())) {
 			type += "W";
 		}
 

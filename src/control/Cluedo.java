@@ -10,7 +10,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,6 +64,12 @@ public class Cluedo {
 		dealCards();
 	}
 	
+	/**
+	 * Creates the components for the selection window of guessing/solving the murder.
+	 * Takes a boolean which represents whether the player is solving or not.
+	 * @param canChooseRoom
+	 * @return
+	 */
 	public JComponent[] createComponents(boolean canChooseRoom){
 		selectedCharacter = "";
 		selectedRoom = "";
@@ -97,11 +102,7 @@ public class Cluedo {
 			}
 		};
 		
-		int columns = 3;
-		if (canChooseRoom){
-			columns = 4;
-		}
-		
+		//Setting up groups and panels
 		List<JComponent> components = new ArrayList<JComponent>();
 		ButtonGroup characterGroup = new ButtonGroup();
 		ButtonGroup roomGroup = new ButtonGroup();
@@ -114,6 +115,7 @@ public class Cluedo {
 		JPanel east = new JPanel();
 		east.setPreferredSize(new Dimension(200,300));
 		
+		//Adding characters to west panel
 		for (Character c : characters){
 			JRadioButton button = new JRadioButton(c.getName());
 			button.addActionListener(characterAction);
@@ -122,6 +124,7 @@ public class Cluedo {
 		}
 		panel.add(west, BorderLayout.WEST);
 		
+		//Adding weapons to center panel
 		for (Weapon w : weapons){
 			JRadioButton button = new JRadioButton(w.cardName());
 			button.addActionListener(weaponAction);
@@ -130,6 +133,7 @@ public class Cluedo {
 		}
 		panel.add(center, BorderLayout.CENTER);
 
+		//If attempting to solve, adding rooms to east panel
 		if (canChooseRoom){
 			for (Room r : rooms){
 				JRadioButton button = new JRadioButton(r.cardName());
@@ -145,6 +149,11 @@ public class Cluedo {
 		
 	}
 	
+	/**
+	 * Utility method for createComponent(). Sets the chosen item to be selected.
+	 * @param type
+	 * @param cardName
+	 */
 	public void setSelection(String type, String cardName){
 		switch (type){
 			case "c": selectedCharacter = cardName;
@@ -369,7 +378,7 @@ public class Cluedo {
 	}
 
 	/**
-	 * Entry point for game of Cluedo, prompts number of players
+	 * Entry point for text-based game of Cluedo, prompts number of players
 	 * @param args
 	 */
 	public static void main(String[] args){

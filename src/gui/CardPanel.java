@@ -7,6 +7,13 @@ import javax.swing.JPanel;
 
 import game.Card;
 
+/**
+ * Contains list of cards to draw (current player's hand)
+ * @author Brad Stone
+ * @author Jarvis Dunn
+ *
+ */
+@SuppressWarnings("serial")
 public class CardPanel extends JPanel {
 	
 	List<Card> cards;

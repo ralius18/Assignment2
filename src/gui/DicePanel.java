@@ -7,6 +7,13 @@ import javax.swing.JPanel;
 
 import control.Dice;
 
+/**
+ * Small panel which contains the dice to be drawn.
+ * @author Brad Stone
+ * @author Jarvis Dunn
+ *
+ */
+@SuppressWarnings("serial")
 public class DicePanel extends JPanel {
 
 	private Dice dice;
